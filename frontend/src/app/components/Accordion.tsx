@@ -1,5 +1,6 @@
 import { item } from "../types/item";
 import { FetchTodoItems } from "./FetchTodoItems";
+import ThreeConsectiveButton from "./ThreeConsectiveButton";
 
 const Accodion = async () => {
   const todoItems = await FetchTodoItems();
@@ -55,6 +56,7 @@ const Accodion = async () => {
               role="region"
               aria-labelledby="hs-basic-heading-one"
             >
+              <ThreeConsectiveButton />
               <div className="flex pb-4 px-6 gap-10">
                 <div className="text-sm text-gray-600 dark:text-neutral-200">
                   {`状態: ${item.status}`}
