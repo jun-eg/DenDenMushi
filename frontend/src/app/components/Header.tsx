@@ -1,3 +1,5 @@
+import SendTextArea from "./SendTextArea";
+
 const Header = () => {
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-gray-800 text-sm py-3 dark:bg-white">
@@ -9,10 +11,11 @@ const Header = () => {
           >
             Todo
           </a>
+          <SendTextArea />
           <div className="sm:hidden">
             <button
               type="button"
-              className="hs-collapse-toggle relative size-9 flex justify-center items-center gap-2 rounded-lg border border-gray-700 font-medium bg-gray-800 text-gray-400 shadow-2xs align-middle hover:bg-gray-700/20 focus:outline-hidden focus:bg-gray-700/20 text-sm dark:bg-white dark:hover:bg-gray-100 dark:border-gray-200 dark:text-gray-600 dark:focus:bg-gray-100"
+              className="hs-collapse-toggle size-9 flex justify-center items-center gap-2 rounded-lg border border-gray-700 font-medium bg-gray-800 text-gray-400 shadow-2xs align-middle hover:bg-gray-700/20 focus:outline-hidden focus:bg-gray-700/20 text-sm dark:bg-white dark:hover:bg-gray-100 dark:border-gray-200 dark:text-gray-600 dark:focus:bg-gray-100"
               id="hs-navbar-dark-collapse"
               aria-expanded="false"
               aria-controls="hs-navbar-dark"
@@ -54,19 +57,13 @@ const Header = () => {
             </button>
           </div>
         </div>
+
         <div
           id="hs-navbar-dark"
-          className="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
+          className="hidden  hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
           aria-labelledby="hs-navbar-dark-collapse"
         >
-          <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-            <a
-              className="font-medium text-white focus:outline-hidden dark:text-black"
-              href="#"
-              aria-current="page"
-            >
-              新規作成
-            </a>
+          <div className="flex flex-col gap-1 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
             <a
               className="font-medium text-gray-400 hover:text-gray-500 focus:outline-hidden focus:text-gray-500 dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
               href="#"
