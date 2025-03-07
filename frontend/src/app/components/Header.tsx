@@ -62,12 +62,12 @@ const Header = () => {
 
         <div
           id="hs-navbar-dark"
-          className="hidden col-start-3 row-start-2 py-2 hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
+          className="hidden sm:text-right max-sm:col-start-3 max-sm:row-start-2 py-2 hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
           aria-labelledby="hs-navbar-dark-collapse"
         >
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
+          <div className="flex text-right flex-col gap-1 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
             <a
-              className="block text-right font-medium text-gray-400 hover:text-gray-500 focus:outline-hidden focus:text-gray-500 dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
+              className="block text-end font-medium text-gray-400 hover:text-gray-500 focus:outline-hidden focus:text-gray-500 dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
               href="#"
             >
               ログイン
