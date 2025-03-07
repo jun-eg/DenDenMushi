@@ -1,3 +1,5 @@
+import { IoIosSend } from "react-icons/io";
+
 const SendTextArea = () => {
   return (
     <div className="relative max-w-sm h-full">
@@ -10,9 +12,9 @@ const SendTextArea = () => {
       <div className="absolute top-1 transform end-3 z-10">
         <button
           type="button"
-          className="inline-flex justify-center items-center text-sm font-medium rounded-lg text-white bg-gray-700 hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none"
+          className="inline-flex justify-center items-center text-sm font-medium rounded-lg hover:bg-gray-500 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
         >
-          作成
+          <IoIosSend color="#1f2937 " />
         </button>
       </div>
     </div>

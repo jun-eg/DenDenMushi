@@ -6,7 +6,7 @@ const Header = () => {
       <nav className="grid grid-cols-3 w-full h-full px-4 items-center">
         <div className="text-left">
           <a
-            className="text-xl font-semibold text-white focus:outline-hidden focus:opacity-80 dark:text-neutral-800"
+            className="text-xl font-semibold text-white focus:outline-hidden hover:text-gray-500 dark:text-neutral-800"
             href="#"
           >
             Todo
@@ -67,7 +67,7 @@ const Header = () => {
         >
           <div className="flex text-right flex-col gap-1 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
             <a
-              className="block text-end font-medium text-gray-400 hover:text-gray-500 focus:outline-hidden focus:text-gray-500 dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
+              className="block text-end font-medium text-white hover:text-gray-500 focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
               href="#"
             >
               ログイン
