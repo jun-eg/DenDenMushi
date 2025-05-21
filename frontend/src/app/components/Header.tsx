@@ -2,11 +2,11 @@ import SendTextArea from "./SendTextArea";
 
 const Header = () => {
   return (
-    <header className="w-full h-15 bg-gray-800 text-sm py-3 dark:bg-white">
+    <header className="w-full h-15 bg-blue-200 text-sm py-3 dark:bg-white">
       <nav className="grid grid-cols-3 w-full h-full px-4 items-center">
         <div className="text-left">
           <a
-            className="text-xl font-semibold text-white focus:outline-hidden hover:text-gray-500 dark:text-neutral-800"
+            className="text-xl font-semibold text-white focus:outline-hidden hover:text-gray-400 dark:text-neutral-800"
             href="#"
           >
             Todo
@@ -18,7 +18,7 @@ const Header = () => {
         <div className="sm:hidden text-right flex justify-end">
           <button
             type="button"
-            className="hs-collapse-toggle size-7 flex justify-center items-center gap-2 rounded-lg border border-gray-700 font-medium bg-gray-800 text-gray-400 shadow-2xs align-middle hover:bg-gray-700/20 focus:outline-hidden focus:bg-gray-700/20 text-sm dark:bg-white dark:hover:bg-gray-100 dark:border-gray-200 dark:text-gray-600 dark:focus:bg-gray-100"
+            className="hs-collapse-toggle size-7 flex justify-center items-center gap-2 rounded-lg border border-gray-700 font-medium bg-gray-800 text-gray-400 shadow-2xs align-middle hover:bg-gray-700/50 focus:outline-hidden text-sm dark:bg-white dark:hover:bg-gray-100 dark:border-gray-200 dark:text-gray-600 dark:focus:bg-gray-100"
             id="hs-navbar-dark-collapse"
             aria-expanded="false"
             aria-controls="hs-navbar-dark"
@@ -67,7 +67,7 @@ const Header = () => {
         >
           <div className="flex text-right flex-col gap-1 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
             <a
-              className="block text-end font-medium text-white hover:text-gray-500 focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
+              className="block text-end font-medium text-white hover:text-gray-400 focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
               href="#"
             >
               ログイン
