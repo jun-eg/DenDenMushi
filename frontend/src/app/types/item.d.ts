@@ -5,3 +5,7 @@ export type item = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type itemProps = {
+  items: item[];
+};
