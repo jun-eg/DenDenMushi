@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/item",
+        destination: "http://host.docker.internal:5000/item",
+      },
+      {
         // クライアントからの /item/xxx → Next.js がこの先にプロキシ
         source: "/item/:path*",
         destination: "http://host.docker.internal:5000/item/:path*",

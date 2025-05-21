@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import { DeleteTodoItem } from "./DeleteTodoItem";
+import { DeleteTodoItem } from "../api/DeleteTodoItem";
 import { ThreeconsectiveButtonProps } from "../types/ThreeConsecttiveButtonProps";
 
 const ThreeConsectiveButton: React.FC<ThreeconsectiveButtonProps> = ({
