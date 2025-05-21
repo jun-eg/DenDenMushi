@@ -1,9 +1,21 @@
-import { item } from "../types/item";
-import { FetchTodoItems } from "./FetchTodoItems";
-import ThreeConsectiveButton from "./ThreeConsectiveButton";
+"use client";
 
-const Accodion = async () => {
-  const todoItems = await FetchTodoItems();
+import { item } from "../types/item";
+import { FetchTodoItems } from "../api/FetchTodoItems";
+import ThreeConsectiveButton from "./ThreeConsectiveButton";
+import { useState } from "react";
+import { useEffect } from "react";
+
+const Accodion = () => {
+  const [todoItems, setTodoItems] = useState<item[]>([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const items = await FetchTodoItems();
+      setTodoItems(items);
+    };
+    fetchItems();
+  }, []);
 
   return (
     <div className="w-full bg-white rounded-lg shadow-md dark:bg-neutral-800">
