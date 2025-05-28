@@ -1,11 +1,9 @@
-import Accodion from "./components/Accordion";
-import Header from "./components/Header";
+import TodoContainer from "./components/TodoContainer";
 
 export default async function Home() {
   return (
     <div>
-      <Header />
-      <Accodion />
+      <TodoContainer />
     </div>
   );
 }

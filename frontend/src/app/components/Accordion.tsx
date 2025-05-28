@@ -1,22 +1,13 @@
-"use client";
-
+import React from "react";
 import { item } from "../types/item";
-import { FetchTodoItems } from "../api/FetchTodoItems";
 import ThreeConsectiveButton from "./ThreeConsectiveButton";
-import { useState } from "react";
-import { useEffect } from "react";
 
-const Accodion = () => {
-  const [todoItems, setTodoItems] = useState<item[]>([]);
+interface AccodionProps {
+  todoItems: item[];
+  setTodoItems: React.Dispatch<React.SetStateAction<item[]>>;
+}
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      const items = await FetchTodoItems();
-      setTodoItems(items);
-    };
-    fetchItems();
-  }, []);
-
+const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
   return (
     <div className="w-full bg-white rounded-lg shadow-md dark:bg-neutral-800">
       <div className="hs-accordion-group" data-hs-accordion-always-open="true">
@@ -68,7 +59,11 @@ const Accodion = () => {
               role="region"
               aria-labelledby="hs-basic-heading-one"
             >
-              <ThreeConsectiveButton id={item.id} />
+              <ThreeConsectiveButton
+                id={item.id}
+                setTodoItems={setTodoItems}
+                todoItems={todoItems}
+              />
               <div className="flex pb- 4 px-6 gap-10">
                 <div className="text-sm text-gray-600 dark:text-neutral-200">
                   {`状態: ${item.status}`}
