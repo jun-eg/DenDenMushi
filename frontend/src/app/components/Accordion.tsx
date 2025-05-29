@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { item } from "../types/item";
 import ThreeConsectiveButton from "./ThreeConsectiveButton";
 
@@ -8,6 +10,12 @@ interface AccodionProps {
 }
 
 const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.HSStaticMethods?.autoInit) {
+      window.HSStaticMethods.autoInit();
+    }
+  }, [todoItems]);
+
   return (
     <div className="w-full bg-white rounded-lg shadow-md dark:bg-neutral-800">
       <div className="hs-accordion-group" data-hs-accordion-always-open="true">
@@ -20,7 +28,7 @@ const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
             <button
               className="hs-accordion-toggle hs-accordion-active:text-blue-600 px-6 py-3 inline-flex items-center gap-x-3 text-sm w-full font-semibold text-start text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500 rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:hs-accordion-active:text-blue-500 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
               aria-expanded="true"
-              aria-controls="hs-basic-collapse-one"
+              aria-controls={`hs-basic-collapse-${item.id}`}
             >
               <svg
                 className="hs-accordion-active:hidden hs-accordion-active:text-blue-600 hs-accordion-active:group-hover:text-blue-600 block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
@@ -57,7 +65,7 @@ const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
               id={`hs-basic-collapse-${item.id}`}
               className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
               role="region"
-              aria-labelledby="hs-basic-heading-one"
+              aria-labelledby={`hs-basic-heading-${item.id}`}
             >
               <ThreeConsectiveButton
                 id={item.id}
