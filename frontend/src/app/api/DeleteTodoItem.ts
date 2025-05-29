@@ -1,4 +1,6 @@
-export const DeleteTodoItem = async (id: string) => {
-  const res = await fetch(`/item/${id}`, { method: "DELETE" });
+import { DeleteItemDto } from "../types/item";
+
+export const DeleteTodoItem = async (DeleteItemDto: DeleteItemDto) => {
+  const res = await fetch(`/item/${DeleteItemDto.id}`, { method: "DELETE" });
   return res;
 };

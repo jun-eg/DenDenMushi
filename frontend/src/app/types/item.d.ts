@@ -6,6 +6,10 @@ export type item = {
   updatedAt: string;
 };
 
-export type itemProps = {
-  items: item[];
+export type CreateItemDto = {
+  body: string;
+};
+
+export type DeleteItemDto = {
+  id: string;
 };
