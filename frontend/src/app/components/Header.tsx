@@ -1,6 +1,12 @@
+import { item } from "../types/item";
 import SendTextArea from "./SendTextArea";
 
-const Header = () => {
+type HeaderProps = {
+  setTodoItems: React.Dispatch<React.SetStateAction<item[]>>;
+  todoItems: item[];
+};
+
+const Header: React.FC<HeaderProps> = ({ setTodoItems, todoItems }) => {
   return (
     <header className="w-full h-15 bg-blue-200 text-sm py-3 dark:bg-white">
       <nav className="grid grid-cols-3 w-full h-full px-4 items-center">
@@ -13,7 +19,7 @@ const Header = () => {
           </a>
         </div>
         <div className="h-full items-center text-center">
-          <SendTextArea />
+          <SendTextArea setTodoItems={setTodoItems} todoItems={todoItems} />
         </div>
         <div className="sm:hidden text-right flex justify-end">
           <button

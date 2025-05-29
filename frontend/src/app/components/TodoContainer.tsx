@@ -15,10 +15,10 @@ const TodoContainer = () => {
       setTodoItems(items);
     };
     fetchItems();
-  });
+  }, []);
   return (
     <div>
-      <Header />
+      <Header setTodoItems={setTodoItems} todoItems={todoItems} />
       <Accodion todoItems={todoItems} setTodoItems={setTodoItems} />
     </div>
   );
