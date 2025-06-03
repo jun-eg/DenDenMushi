@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ setTodoItems, todoItems }) => {
         <div className="sm:hidden text-right flex justify-end">
           <button
             type="button"
-            className="hs-collapse-toggle size-7 flex justify-center items-center gap-2 rounded-lg border border-gray-700 font-medium bg-gray-800 text-gray-400 shadow-2xs align-middle hover:bg-gray-700/50 focus:outline-hidden text-sm dark:bg-white dark:hover:bg-gray-100 dark:border-gray-200 dark:text-gray-600 dark:focus:bg-gray-100"
+            className="hs-collapse-toggle size-7 flex justify-center items-center gap-2 rounded-lg border border-white font-medium bg-blue-200 text-white shadow-2xs align-middle hover:bg-gray-400 focus:outline-hidden text-sm dark:bg-white dark:hover:bg-gray-100 dark:border-gray-200 dark:text-gray-600 dark:focus:bg-gray-100"
             id="hs-navbar-dark-collapse"
             aria-expanded="false"
             aria-controls="hs-navbar-dark"
