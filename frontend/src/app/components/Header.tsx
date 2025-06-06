@@ -1,4 +1,4 @@
-import { item } from "../types/item";
+import type { item } from "../types/item";
 import SendTextArea from "./SendTextArea";
 
 type HeaderProps = {
@@ -8,11 +8,11 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ setTodoItems, todoItems }) => {
   return (
-    <header className="w-full h-15 bg-blue-200 text-sm py-3 dark:bg-white">
-      <nav className="grid grid-cols-3 w-full h-full px-4 items-center">
+    <header className="h-15 w-full bg-blue-200 py-3 text-sm dark:bg-white">
+      <nav className="grid h-full w-full grid-cols-3 items-center px-4">
         <div className="text-left">
           <a
-            className="text-xl font-semibold text-white focus:outline-hidden hover:text-gray-400 dark:text-neutral-800"
+            className="focus:outline-hidden text-xl font-semibold text-white hover:text-gray-400 dark:text-neutral-800"
             href="#"
           >
             Todo
@@ -21,10 +21,10 @@ const Header: React.FC<HeaderProps> = ({ setTodoItems, todoItems }) => {
         <div className="h-full items-center text-center">
           <SendTextArea setTodoItems={setTodoItems} todoItems={todoItems} />
         </div>
-        <div className="sm:hidden text-right flex justify-end">
+        <div className="flex justify-end text-right sm:hidden">
           <button
             type="button"
-            className="hs-collapse-toggle size-7 flex justify-center items-center gap-2 rounded-lg border border-white font-medium bg-blue-200 text-white shadow-2xs align-middle hover:bg-gray-400 focus:outline-hidden text-sm dark:bg-white dark:hover:bg-gray-100 dark:border-gray-200 dark:text-gray-600 dark:focus:bg-gray-100"
+            className="hs-collapse-toggle shadow-2xs focus:outline-hidden flex size-7 items-center justify-center gap-2 rounded-lg border border-white bg-blue-200 align-middle text-sm font-medium text-white hover:bg-gray-400 dark:border-gray-200 dark:bg-white dark:text-gray-600 dark:hover:bg-gray-100 dark:focus:bg-gray-100"
             id="hs-navbar-dark-collapse"
             aria-expanded="false"
             aria-controls="hs-navbar-dark"
@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ setTodoItems, todoItems }) => {
             data-hs-collapse="#hs-navbar-dark"
           >
             <svg
-              className="hs-collapse-open:hidden shrink-0 size-4"
+              className="size-4 shrink-0 hs-collapse-open:hidden"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ setTodoItems, todoItems }) => {
               <line x1="3" x2="21" y1="18" y2="18" />
             </svg>
             <svg
-              className="hs-collapse-open:block hidden shrink-0 size-4"
+              className="hidden size-4 shrink-0 hs-collapse-open:block"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -68,12 +68,12 @@ const Header: React.FC<HeaderProps> = ({ setTodoItems, todoItems }) => {
 
         <div
           id="hs-navbar-dark"
-          className="hidden sm:text-right max-sm:col-start-3 max-sm:row-start-2 py-1 hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
+          className="hs-collapse hidden grow basis-full overflow-hidden py-1 transition-all duration-300 max-sm:col-start-3 max-sm:row-start-2 sm:block sm:text-right"
           aria-labelledby="hs-navbar-dark-collapse"
         >
-          <div className="flex text-right flex-col gap-1 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
+          <div className="flex flex-col gap-1 text-right sm:mt-0 sm:flex-row sm:items-center sm:justify-end sm:ps-5">
             <a
-              className="block text-end font-medium text-white hover:text-gray-400 focus:outline-hidden dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
+              className="focus:outline-hidden block text-end font-medium text-white hover:text-gray-400 dark:text-neutral-500 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
               href="#"
             >
               ログイン

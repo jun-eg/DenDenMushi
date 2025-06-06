@@ -1,6 +1,6 @@
-import { item } from "../types/item";
+import type { item } from "../types/item";
 
-export const FetchTodoItems = async () => {
+export const FetchTodoItems = async (): Promise<item[]> => {
   const res = await fetch(`/item`, {
     method: "GET",
     // Next.js プロキシ経由でキャッシュしない場合

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { item } from "../types/item";
+import type { item } from "../types/item";
 import ThreeConsectiveButton from "./ThreeConsectiveButton";
 
 interface AccodionProps {
@@ -17,7 +17,7 @@ const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
   }, [todoItems]);
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-md dark:bg-neutral-800">
+    <div className="w-full rounded-lg bg-white shadow-md dark:bg-neutral-800">
       <div className="hs-accordion-group" data-hs-accordion-always-open="true">
         {todoItems.map((item: item) => (
           <div
@@ -26,12 +26,12 @@ const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
             key={item.id}
           >
             <button
-              className="hs-accordion-toggle hs-accordion-active:text-blue-600 px-6 py-3 inline-flex items-center gap-x-3 text-sm w-full font-semibold text-start text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500 rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:hs-accordion-active:text-blue-500 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
+              className="hs-accordion-toggle inline-flex w-full items-center gap-x-3 rounded-lg px-6 py-3 text-start text-sm font-semibold text-gray-800 hover:text-gray-500 focus:text-gray-500 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-accordion-active:text-blue-600 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 dark:hs-accordion-active:text-blue-500"
               aria-expanded="true"
               aria-controls={`hs-basic-collapse-${item.id}`}
             >
               <svg
-                className="hs-accordion-active:hidden hs-accordion-active:text-blue-600 hs-accordion-active:group-hover:text-blue-600 block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
+                className="block size-4 text-gray-600 group-hover:text-gray-500 hs-accordion-active:hidden hs-accordion-active:text-blue-600 hs-accordion-active:group-hover:text-blue-600 dark:text-neutral-400"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -42,11 +42,11 @@ const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M5 12h14"></path>
-                <path d="M12 5v14"></path>
+                <path d="M5 12h14" />
+                <path d="M12 5v14" />
               </svg>
               <svg
-                className="hs-accordion-active:block hs-accordion-active:text-blue-600 hs-accordion-active:group-hover:text-blue-600 hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
+                className="hidden size-4 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block hs-accordion-active:text-blue-600 hs-accordion-active:group-hover:text-blue-600 dark:text-neutral-400"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -57,7 +57,7 @@ const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M5 12h14"></path>
+                <path d="M5 12h14" />
               </svg>
               {item.body}
             </button>
@@ -72,7 +72,7 @@ const Accodion: React.FC<AccodionProps> = ({ todoItems, setTodoItems }) => {
                 setTodoItems={setTodoItems}
                 todoItems={todoItems}
               />
-              <div className="flex pb- 4 px-6 gap-10">
+              <div className="pb- 4 flex gap-10 px-6">
                 <div className="text-sm text-gray-600 dark:text-neutral-200">
                   {`状態: ${item.status}`}
                 </div>
