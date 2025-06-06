@@ -1,5 +1,7 @@
 FROM node:20.18.2
 
+RUN npm install -g npm@11.4.1
+
 WORKDIR /app
 
 COPY package*.json ./
