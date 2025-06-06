@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Accodion from "./Accordion";
 import Header from "./Header";
 import type { item } from "../types/item";
 import { FetchTodoItems } from "../api/FetchTodoItems";
 
-const TodoContainer = () => {
+const TodoContainer = ():React.JSX.Element => {
   const [todoItems, setTodoItems] = useState<item[]>([]);
 
   console.log("TodoContainer rendered");
   console.log(todoItems);
+
 
   useEffect(() => {
     const fetchItems = async () => {
