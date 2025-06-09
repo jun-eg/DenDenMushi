@@ -9,7 +9,8 @@
     "lint": "next lint && npx eslint . --ext .js,.jsx,.ts,.tsx,.mjs",
     "lint:fix": "next lint --fix && npx eslint . --ext .js,.jsx,.ts,.tsx,.mjs --fix",
     "format": "prettier --check \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache",
-    "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache"
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "15.1.6",
@@ -30,7 +31,10 @@
     "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-config-next": "15.1.6",
     "eslint-config-prettier": "^10.1.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
     "postcss": "^8",
+    "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

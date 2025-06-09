@@ -6,7 +6,6 @@ import js from "@eslint/js";
 import tseslintPlugin from "@typescript-eslint/eslint-plugin";
 import tseslintParser from "@typescript-eslint/parser";
 import reactPlugin from "eslint-plugin-react";
-import prettierConfig from "./prettier.config.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,8 +16,11 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   gitignore(),
+  {
+    ignores: ["prettier.config.mjs"],
+  },
   js.configs.recommended,
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
   {
     files: ["**/*.{js,mjs,cjs,ts,tsx}"],
     languageOptions: {
@@ -68,8 +70,7 @@ const eslintConfig = [
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "error",
     },
-  },
-  prettierConfig,
+  }
 ];
 
 export default eslintConfig;
