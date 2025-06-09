@@ -22,7 +22,7 @@ const eslintConfig = [
   js.configs.recommended,
   ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
   {
-    files: ["**/*.{js,mjs,cjs,ts,tsx}"],
+    files: ["src/**/*.{js,mjs,cjs,ts,tsx}"],
     languageOptions: {
       parser: tseslintParser,
       parserOptions: {
@@ -70,7 +70,7 @@ const eslintConfig = [
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "error",
     },
-  }
+  },
 ];
 
 export default eslintConfig;
