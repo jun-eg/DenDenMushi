@@ -3,10 +3,11 @@ version: "3.8"
 services:
   api:
     build:
-      context: ./docker/back
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/back/Dockerfile
     volumes:
-      - ./backend:/app
+      - ./:/workspace
+    working_dir: /workspace/backend
     ports:
       - "5000:5000"
     networks:
@@ -14,10 +15,11 @@ services:
 
   front:
     build:
-      context: ./docker/front
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/front/Dockerfile
     volumes:
-      - ./frontend:/app
+      - ./:/workspace
+    working_dir: /workspace/frontend
     ports:
       - "3000:3000"
     networks:

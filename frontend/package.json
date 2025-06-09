@@ -10,7 +10,7 @@
     "lint:fix": "next lint --fix && npx eslint . --ext .js,.jsx,.ts,.tsx,.mjs --fix",
     "format": "prettier --check \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache",
     "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,md,json,lintstagedrc,yml,yaml}\" --cache",
-    "prepare": "husky install frontend/.husky"
+    "prepare": "husky install .husky"
   },
   "dependencies": {
     "next": "15.1.6",

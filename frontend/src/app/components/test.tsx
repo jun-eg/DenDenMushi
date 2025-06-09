@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+//test component to check if the app is working
+
 const Page: FC = () => {
   return (
     <main>

@@ -1,0 +1,10 @@
+{
+  "name": "startkit",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "packageManager": "yarn@1.22.19"
+}
