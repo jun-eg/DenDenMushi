@@ -1,13 +1,15 @@
 FROM node:20.18.0
 
-RUN npm install -g npm@11.4.1
+WORKDIR /workspace
 
-WORKDIR /app
-
-COPY package*.json ./
+COPY package.json yarn.lock ./
+COPY backend/package.json ./backend/
+COPY frontend/package.json ./frontend/
 
 RUN yarn install
 
 COPY . .
 
-CMD ["npm", "run", "dev"]
+WORKDIR /workspace/frontend
+
+CMD ["yarn", "dev"]

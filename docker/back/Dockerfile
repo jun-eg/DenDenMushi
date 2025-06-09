@@ -1,15 +1,15 @@
 FROM node:20.18.2
 
-RUN npm install -g npm@11.4.1
+WORKDIR /workspace
 
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm i -g @nestjs/cli
+COPY package.json yarn.lock ./
+COPY backend/package.json ./backend/
+COPY frontend/package.json ./frontend/
 
 RUN yarn install
 
 COPY . .
 
-CMD ["npm", "run", "start"]
+WORKDIR /workspace/backend
+
+CMD ["yarn", "start"]
