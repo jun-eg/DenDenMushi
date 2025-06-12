@@ -1,1 +1,1 @@
-npx lint-staged --concurrent false --allow-empty
+npx lint-staged --concurrent false --allow-empty --no-stash
