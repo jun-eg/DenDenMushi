@@ -1,4 +1,3 @@
-# .github/workflows/auto-approve.yml
 name: Auto Approve
 
 on:
