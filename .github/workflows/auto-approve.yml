@@ -1,3 +1,4 @@
+# .github/workflows/auto-approve.yml
 name: Auto Approve
 
 on:
@@ -9,12 +10,13 @@ permissions:
 
 jobs:
   approve:
+    runs-on: ubuntu-latest
     if: |
       github.event.pull_request.user.login == github.repository_owner
       && ! github.event.pull_request.draft
-    runs-on: ubuntu-latest
     steps:
       - name: 自動Approve
         uses: hmarr/auto-approve-action@v3
         with:
+          
           github-token: ${{ secrets.GITHUB_TOKEN }}
