@@ -7,6 +7,7 @@ services:
       dockerfile: docker/back/Dockerfile
     volumes:
       - ./:/workspace
+      - /workspace/node_modules
     working_dir: /workspace/backend
     ports:
       - "5000:5000"
@@ -19,6 +20,7 @@ services:
       dockerfile: docker/front/Dockerfile
     volumes:
       - ./:/workspace
+      - /workspace/node_modules
     working_dir: /workspace/frontend
     ports:
       - "3000:3000"
