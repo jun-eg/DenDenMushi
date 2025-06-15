@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { Item } from './item.model';
-import { CreateItemDto } from './dto/create-item';
-import { ItemStatus } from './item-status.enum';
-import { v4 as uuid } from 'uuid';
+import { Injectable } from "@nestjs/common";
+import { Item } from "./item.model";
+import { CreateItemDto } from "./dto/create-item";
+import { ItemStatus } from "./item-status.enum";
+import { v4 as uuid } from "uuid";
 
 @Injectable()
 export class ItemService {
