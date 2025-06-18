@@ -6,7 +6,7 @@ import { SignalingGateway } from "./signaling/signaling.gateway";
 
 @Module({
   controllers: [AppController],
-  providers: [AppService, SignalingGateway],
-  imports: [ItemModule],
+  providers: [AppService],
+  imports: [ItemModule, SignalingGateway],
 })
 export class AppModule {}
