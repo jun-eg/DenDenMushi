@@ -6,12 +6,12 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
-} from '@nestjs/common';
-import { ItemService } from './item.service';
-import { Item } from './item.model';
-import { CreateItemDto } from './dto/create-item';
+} from "@nestjs/common";
+import { ItemService } from "./item.service";
+import { Item } from "./item.model";
+import { CreateItemDto } from "./dto/create-item";
 
-@Controller('item')
+@Controller("item")
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
@@ -25,8 +25,8 @@ export class ItemController {
     return this.itemService.create(createItem);
   }
 
-  @Delete(':id')
-  delete(@Param('id', ParseUUIDPipe) id: string): string {
+  @Delete(":id")
+  delete(@Param("id", ParseUUIDPipe) id: string): string {
     return this.itemService.delete(id);
   }
 }
