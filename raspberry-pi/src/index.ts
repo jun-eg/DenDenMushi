@@ -33,7 +33,7 @@ socket.on("signal", (msg: { from: string; payload: any }) => {
   }
 });
 
-peer.on("signal", (data: any) => {
+peer.on("signal", (data: SignalData) => {
   socket.emit("signal", { target: TARGET, type: "signal", payload: data });
 });
 
