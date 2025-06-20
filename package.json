@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "workspaces": [
     "frontend",
-    "backend"
+    "backend",
+    "raspberry-pi"
   ],
   "packageManager": "yarn@1.22.19",
   "devDependencies": {
