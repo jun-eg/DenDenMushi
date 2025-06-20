@@ -28,7 +28,7 @@ export class SignalingGateway
       console.log(`Client disconnected: ${id}`);
     }
   }
-  @SubscribeMessage("register") // クライアントから 'register' が送られたら実行
+  @SubscribeMessage("register")
   register(
     @MessageBody() data: { id: string },
     @ConnectedSocket() client: Socket,
@@ -37,7 +37,7 @@ export class SignalingGateway
     console.log(`Registered client ID: ${data.id}`);
   }
 
-  @SubscribeMessage("signal") // シグナリングメッセージ（offer/answer/candidate）を受信
+  @SubscribeMessage("signal")
   handleSignal(
     @MessageBody() data: SignalingMessage,
     @ConnectedSocket() client: Socket,
@@ -51,6 +51,11 @@ export class SignalingGateway
         type: data.type,
         payload: data.payload,
       });
+      console.log(
+        `Signal sent from ${
+          [...this.clients.entries()].find(([_, sock]) => sock === client)?.[0]
+        } to ${data.target}`,
+      );
     } else {
       console.warn(`Target ${data.target} not found`);
     }
