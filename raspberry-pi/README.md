@@ -14,12 +14,13 @@ cd DennDennMushi
 yarn install
 ```
 
-Raspberry Pi では `speaker` パッケージ用の開発ヘッダーが必要なため、
-以下のコマンドで `libasound2-dev` をインストールしてください。
+
+音声出力には `aplay` コマンドを利用します。`alsa-utils` パッケージが
+インストールされていない場合は以下を実行してください。
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y libasound2-dev
+sudo apt-get install -y alsa-utils
 ```
 
 シグナリングサーバー (backend) を起動しておきます。Docker を利用する場合は

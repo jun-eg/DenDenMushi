@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 import SimplePeer from "simple-peer";
 import { v4 as uuidv4 } from "uuid";
 import record from "node-record-lpcm16";
-import Speaker from "speaker";
+import { spawn } from "child_process";
 import wrtc from "wrtc";
 
 const SIGNALING_URL = process.env.SIGNALING_URL ?? "http://localhost:5000";
@@ -37,7 +37,7 @@ peer.on("signal", (data) => {
   socket.emit("signal", { target: TARGET, type: "signal", payload: data });
 });
 
-const speaker = new Speaker({ channels: 1, bitDepth: 16, sampleRate: 48000 });
+const aplay = spawn("aplay", ["-f", "S16_LE", "-r", "48000", "-c", "1"]);
 
 peer.on("connect", () => {
   console.log("peer connection established");
@@ -46,6 +46,10 @@ peer.on("connect", () => {
 });
 
 peer.on("data", (data: Buffer) => {
-  speaker.write(data);
+  aplay.stdin.write(data);
+});
+
+peer.on("close", () => {
+  aplay.stdin.end();
 });
 
