@@ -14,8 +14,8 @@ cd DennDennMushi
 yarn install
 ```
 
-Raspberry Pi では `speaker` パッケージ用の開発ヘッダーが必要なため、
-以下のコマンドで `libasound2-dev` をインストールしてください。
+Raspberry Pi では `naudiodon` を利用するための開発ヘッダーが必要です。
+以下のコマンドで `libasound2-dev` などをインストールしてください。
 
 ```bash
 sudo apt-get update

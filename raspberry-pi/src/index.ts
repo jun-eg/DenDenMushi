@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 import SimplePeer from "simple-peer";
 import { v4 as uuidv4 } from "uuid";
 import record from "node-record-lpcm16";
-import Speaker from "speaker";
+import portAudio from "naudiodon";
 import wrtc from "wrtc";
 
 const SIGNALING_URL = process.env.SIGNALING_URL ?? "http://localhost:5000";
@@ -33,11 +33,20 @@ socket.on("signal", (msg: { from: string; payload: any }) => {
   }
 });
 
-peer.on("signal", (data) => {
+peer.on("signal", (data: any) => {
   socket.emit("signal", { target: TARGET, type: "signal", payload: data });
 });
 
-const speaker = new Speaker({ channels: 1, bitDepth: 16, sampleRate: 48000 });
+const audioOut = new portAudio.AudioIO({
+  outOptions: {
+    channelCount: 1,
+    sampleFormat: portAudio.SampleFormat16Bit,
+    sampleRate: 48000,
+    deviceId: -1,
+  },
+});
+
+audioOut.start();
 
 peer.on("connect", () => {
   console.log("peer connection established");
@@ -46,6 +55,6 @@ peer.on("connect", () => {
 });
 
 peer.on("data", (data: Buffer) => {
-  speaker.write(data);
+  audioOut.write(data);
 });
 

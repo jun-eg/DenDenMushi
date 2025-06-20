@@ -14,7 +14,7 @@
     "wrtc": "^0.4.7",
     "uuid": "^11.1.0",
     "node-record-lpcm16": "^1.0.1",
-    "speaker": "^0.5.3"
+    "naudiodon": "^2.3.6"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
