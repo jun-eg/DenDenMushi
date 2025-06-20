@@ -1,8 +1,7 @@
 # Raspberry Pi クライアント
 
 NestJS で動作するシグナリングサーバー (`backend`) を利用し、
-`ras-1` と `ras-2` の 2 台の Raspberry Pi 間で WebRTC 通話を行うための
-サンプルコードです。
+`ras-1` と `ras-2` の 2 台の Raspberry Pi 間で WebRTC 通話を行う。
 
 ## セットアップ
 
