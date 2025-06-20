@@ -33,7 +33,7 @@ socket.on("signal", (msg: { from: string; payload: any }) => {
   }
 });
 
-peer.on("signal", (data) => {
+peer.on("signal", (data:RTCSessionDescriptionInit | RTCIceCandidateInit) => {
   socket.emit("signal", { target: TARGET, type: "signal", payload: data });
 });
 

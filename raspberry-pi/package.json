@@ -9,13 +9,15 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "socket.io-client": "^4.8.1",
+    "node-record-lpcm16": "^1.0.1",
     "simple-peer": "^9.11.1",
-    "wrtc": "^0.4.7",
+    "socket.io-client": "^4.8.1",
     "uuid": "^11.1.0",
-    "node-record-lpcm16": "^1.0.1"
+    "wrtc": "^0.4.7"
   },
   "devDependencies": {
+    "@types/node": "^24.0.3",
+    "@types/simple-peer": "^9.11.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   }
