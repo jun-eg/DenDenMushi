@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>かわいいでんでん虫 - ワンピース風</title>
+  <style>
+    body {
+      font-family: 'Treasure Map Deadhand', 'Segoe UI', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/old-map.png');
+      background-color: #fff8e7;
+      margin: 0;
+      padding: 0;
+      color: #2b1f00;
+    }
+
+    header {
+      background-color: #ffdd57;
+      border-bottom: 5px solid #e79e00;
+      padding: 1.5rem;
+      text-align: center;
+      background-image: linear-gradient(180deg, #fff8e7, #ffe792);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #b30000;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #3e2b00;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .image-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .image-section img {
+      max-width: 300px;
+      border: 6px solid #ca9c60;
+      border-radius: 1rem;
+      background-color: #fffef5;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .features {
+      background-color: #fff7d5;
+      padding: 1.5rem;
+      border-left: 6px solid #f0b000;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .features h2 {
+      font-size: 1.6rem;
+      color: #af5c00;
+    }
+
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      font-size: 1.1rem;
+      margin: 1rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .features li::before {
+      content: "🌀";
+      position: absolute;
+      left: 0;
+    }
+
+    .demo {
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #ff6b00;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #ff8c1a;
+    }
+
+    #result {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #3a2900;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f5d67a;
+      font-size: 0.9rem;
+      color: #4e3600;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+    h1, h2 {
+      font-family: 'Pirata One', cursive;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>伝説のでんでん虫！</h1>
+    <p>〜世界に一つのかわいい通信相棒〜</p>
+  </header>
+
+  <main>
+    <section class="image-section">
+      <img src="https://sdmntprwestcentralus.oaiusercontent.com/files/00000000-fe90-61fb-b826-2bb82ff9e87d/raw?se=2025-06-21T07%3A27%3A50Z&sp=r&sv=2024-08-04&sr=b&scid=bfe8c7fb-fa5f-5c4f-b2e2-1890923c7ce6&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-20T18%3A15%3A58Z&ske=2025-06-21T18%3A15%3A58Z&sks=b&skv=2024-08-04&sig=ldQGUgt4V6u4RsZwNOMntfxJMvPDlSDQpGJ9vZ2qmqo%3D" alt="かわいい電伝虫の画像">
+    </section>
+
+    <section class="features">
+      <h2>🧭 主な機能</h2>
+      <ul>
+        <li>音声操作で「○○に連絡！」と話しかけるだけ！</li>
+        <li>通話中も表情が変わる！リアルな反応</li>
+        <li>AI搭載でかんたんな会話も可能</li>
+        <li>帽子やカラーの着せ替えもできる！</li>
+      </ul>
+    </section>
+
+    <section class="demo">
+      <h2>🎤 音声デモ</h2>
+      <button class="btn" onclick="startVoiceRecognition()">電伝虫に話しかける</button>
+      <p id="result">（ここに発話内容が表示されます）</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Den Den Mushi Custom Co. 〜 Inspired by ONE PIECE World 〜</p>
+  </footer>
+
+  <script>
+    function startVoiceRecognition() {
+      const resultElem = document.getElementById("result");
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        resultElem.textContent = "このブラウザは音声認識に対応していません。";
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'ja-JP';
+      recognition.interimResults = false;
+
+      recognition.onstart = () => {
+        resultElem.textContent = "🎙️ 電伝虫が聞いています...";
+      };
+
+      recognition.onerror = (event) => {
+        resultElem.textContent = "❌ エラー：" + event.error;
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        resultElem.textContent = `✅ 認識：「${transcript}」`;
+
+        if (transcript.includes("に連絡")) {
+          resultElem.textContent += "\n▶️ に連絡の音声を再生中…";
+          const audio = new Audio("https://media.vocaroo.com/mp3/15aexy2CQkDd");
+          audio.play();
+        }
+      };
+
+      recognition.start();
+    }
+  </script>
+
+
+  
+</body>
+</html>
