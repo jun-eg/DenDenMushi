@@ -94,8 +94,9 @@ const connect = () => {
 
   peer.on("connect", () => {
     console.log("P2P音声通話が開始!");
-    const recording = record.record({ sampleRate: 48000, channels: 1, thresholdStart: 0 });
-    recording.stream().on('data', (chunk: Buffer) => peer.send(chunk));
+    const recording = record.record({ sampleRate: 48000, channels: 1, thresholdStart: 0,device: 'plughw:3,0' });
+    recording.stream().on('data', (chunk) => peer.send(chunk)).on('error', (err) => {
+    console.error('録音エラー:', err);});
   });
 
   peer.on("data", (data: Buffer) => {
