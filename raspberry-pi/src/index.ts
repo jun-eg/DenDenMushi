@@ -66,6 +66,33 @@ async function initGPIO() {
   }
 }
 
+const playSound = (filePath: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    console.log(`音声再生中: ${filePath}`);
+    
+    const aplayProcess = spawn("aplay", [filePath]);
+    
+    aplayProcess.on("close", (code) => {
+      if (code === 0) {
+        console.log("音声再生完了");
+        resolve();
+      } else {
+        console.error(`音声再生エラー (コード: ${code})`);
+        reject(new Error(`aplay exited with code ${code}`));
+      }
+    });
+    
+    aplayProcess.on("error", (error) => {
+      console.error("音声再生プロセスエラー:", error);
+      reject(error);
+    });
+    
+    aplayProcess.stderr.on("data", (data) => {
+      console.error("音声再生エラー:", data.toString());
+    });
+  });
+};
+
 const connect = () => {
   const socket = io(SIGNALING_URL);
 
@@ -86,17 +113,38 @@ const connect = () => {
     }
   });
 
-  peer.on("signal", (data: RTCSessionDescriptionInit | RTCIceCandidateInit) => {
-    socket.emit("signal", { target: TARGET, type: "signal", payload: data });
+  peer.on("signal", async (data: RTCSessionDescriptionInit | RTCIceCandidateInit) => {
+    try {
+      // でんでん虫.wavを再生
+      await playSound("/home/eguchijun/DennDennMush/raspberry-pi/でんでん虫.wav");
+      
+      // 再生完了後にシグナルを送信
+      socket.emit("signal", { target: TARGET, type: "signal", payload: data });
+      console.log("📡 シグナル送信完了");
+      
+    } catch (error) {
+      console.error("音声再生に失敗しましたが、シグナルは送信します:", error);
+      // 音声再生に失敗してもシグナルは送信
+      socket.emit("signal", { target: TARGET, type: "signal", payload: data });
+    }
   });
 
   const aplay = spawn("aplay", ["-f", "S16_LE", "-r", "48000", "-c", "1"]);
 
   peer.on("connect", () => {
     console.log("P2P音声通話が開始!");
-    const recording = record.record({ sampleRate: 48000, channels: 1, thresholdStart: 0,device: 'plughw:3,0' });
-    recording.stream().on('data', (chunk) => peer.send(chunk)).on('error', (err) => {
-    console.error('録音エラー:', err);});
+    const recording = record.record({ 
+      sampleRate: 48000, 
+      channels: 1, 
+      thresholdStart: 0, 
+      device: 'plughw:3,0' 
+    });
+    
+    recording.stream()
+      .on('data', (chunk) => peer.send(chunk))
+      .on('error', (err) => {
+        console.error('録音エラー:', err);
+      });
   });
 
   peer.on("data", (data: Buffer) => {
@@ -122,7 +170,7 @@ process.on('SIGINT', async () => {
 });
 
 initGPIO().then(() => {
- console.log("ボタンを押すと接続/切断を切り替えられます");
+  console.log("ボタンを押すと接続/切断を切り替えられます");
   console.log(`サーバー: ${SIGNALING_URL}`);
   console.log(`ID: ${ID}`);
   console.log(`TARGET: ${TARGET}`);
