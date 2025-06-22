@@ -4,11 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 import record from "node-record-lpcm16";
 import { spawn } from "child_process";
 import wrtc from "wrtc";
-import { requestGPIOAccess } from "node-web-gpio";
+import { Gpio } from "pigpio";
 
 let connected = false;
-let gpioAccess: any = null;
-let port17: any = null;
+let button: Gpio;
 
 const SIGNALING_URL = process.env.SIGNALING_URL ?? "http://localhost:5000";
 const ID = process.env.ID ?? uuidv4();
@@ -20,22 +19,25 @@ if (!TARGET) {
 }
 
 // GPIO初期化
-async function initGPIO() {
+function initGPIO() {
   try {
-    gpioAccess = await requestGPIOAccess();
-    port17 = gpioAccess.ports.get(17);
-    await port17.export("in");
+    // GPIO27を入力モードで初期化、プルアップ抵抗を有効
+    button = new Gpio(27, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_UP,
+      edge: Gpio.RISING_EDGE
+    });
     
-    console.log("GPIO 17 initialized");
+    console.log("GPIO 27 initialized with pigpio");
     
-    // ボタン押下のイベントリスナー
-    port17.onchange = (event: any) => {
-      if (event.value === 1 && !connected) { // ボタンが押された
+    // ボタン押下のイベントリスナー（立ち上がりエッジで検出）
+    button.on('interrupt', (level) => {
+      if (level === 1 && !connected) { // ボタンが押された
         connected = true;
         console.log("Button pressed, starting signaling...");
         connect();
       }
-    };
+    });
   } catch (error) {
     console.error("GPIO initialization failed:", error);
     process.exit(1);
@@ -84,17 +86,19 @@ const connect = () => {
 };
 
 // プロセス終了時のクリーンアップ
-process.on('SIGINT', async () => {
+process.on('SIGINT', () => {
   console.log('\nShutting down...');
-  if (port17) {
-    await port17.unexport();
+  if (button) {
+    button.removeAllListeners();
   }
   process.exit();
 });
 
 // GPIO初期化を実行
-initGPIO().then(() => {
-  console.log("Ready! Press the button to start signaling...");
-});
+initGPIO();
+console.log("Ready! Press the button to start signaling...");
+console.log(`📡 Will connect to: ${SIGNALING_URL}`);
+console.log(`🆔 ID: ${ID}`);
+console.log(`🎯 TARGET: ${TARGET}`);
 
 
