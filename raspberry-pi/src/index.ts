@@ -4,10 +4,15 @@ import { v4 as uuidv4 } from "uuid";
 import record from "node-record-lpcm16";
 import { spawn } from "child_process";
 import wrtc from "wrtc";
-import { Gpio } from "pigpio";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const pigpioClient = require('pigpio-client');
 
 let connected = false;
-let button: Gpio;
+let debounceLock = false;
+let pi: any = null;
+let gpio18: any = null;
 
 const SIGNALING_URL = process.env.SIGNALING_URL ?? "http://localhost:5000";
 const ID = process.env.ID ?? uuidv4();
@@ -18,28 +23,45 @@ if (!TARGET) {
   process.exit(1);
 }
 
-// GPIO初期化
-function initGPIO() {
+async function initGPIO() {
   try {
-    // GPIO27を入力モードで初期化、プルアップ抵抗を有効
-    button = new Gpio(27, {
-      mode: Gpio.INPUT,
-      pullUpDown: Gpio.PUD_UP,
-      edge: Gpio.RISING_EDGE
+    pi = pigpioClient.pigpio();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    const gpio18Pin = pi.gpio(18);
+    await gpio18Pin.modeSet('input'); 
+    await gpio18Pin.pullUpDown(2); 
+    console.log("GPIO 18 initialized with pigpio-client");
+    
+    await pi.startNotifications();
+    
+    gpio18Pin.notify((level: number, tick: number) => {
+      if (level === 0 && !debounceLock) { 
+        if (!connected) {
+          connected = true;
+          debounceLock = true;
+          console.log("接続を開始します...");
+          connect();
+        } else {
+          connected = false;
+          debounceLock = true;
+          disconnect();
+        }
+        
+        setTimeout(() => {
+          debounceLock = false;
+        }, 3000); 
+      } 
     });
     
-    console.log("GPIO 27 initialized with pigpio");
+    gpio18 = gpio18Pin;
     
-    // ボタン押下のイベントリスナー（立ち上がりエッジで検出）
-    button.on('interrupt', (level) => {
-      if (level === 1 && !connected) { // ボタンが押された
-        connected = true;
-        console.log("Button pressed, starting signaling...");
-        connect();
-      }
-    });
   } catch (error) {
     console.error("GPIO initialization failed:", error);
+    console.error("Available methods:", Object.keys(pigpioClient));
+    if (pi) {
+      console.error("Pi object methods:", Object.keys(pi));
+    }
     process.exit(1);
   }
 }
@@ -54,7 +76,7 @@ const connect = () => {
   });
 
   socket.on("connect", () => {
-    console.log(`connected to signaling server as ${ID}`);
+    console.log(`サーバに接続完了(ID: ${ID})`);
     socket.emit("register", { id: ID });
   });
 
@@ -71,7 +93,7 @@ const connect = () => {
   const aplay = spawn("aplay", ["-f", "S16_LE", "-r", "48000", "-c", "1"]);
 
   peer.on("connect", () => {
-    console.log("peer connection established");
+    console.log("P2P音声通話が開始!");
     const recording = record.record({ sampleRate: 48000, channels: 1, thresholdStart: 0 });
     recording.stream().on('data', (chunk: Buffer) => peer.send(chunk));
   });
@@ -81,24 +103,30 @@ const connect = () => {
   });
 
   peer.on("close", () => {
+    console.log("p2p接続が切断されました");
     aplay.stdin.end();
   });
 };
 
-// プロセス終了時のクリーンアップ
-process.on('SIGINT', () => {
-  console.log('\nShutting down...');
-  if (button) {
-    button.removeAllListeners();
+const disconnect = () => {
+  console.log("サーバー切断完了");
+};
+
+process.on('SIGINT', async () => {
+  if (pi) {
+    await pi.stopNotifications();
+    await pi.destroy();
   }
   process.exit();
 });
 
-// GPIO初期化を実行
-initGPIO();
-console.log("Ready! Press the button to start signaling...");
-console.log(`📡 Will connect to: ${SIGNALING_URL}`);
-console.log(`🆔 ID: ${ID}`);
-console.log(`🎯 TARGET: ${TARGET}`);
+initGPIO().then(() => {
+ console.log("ボタンを押すと接続/切断を切り替えられます");
+  console.log(`サーバー: ${SIGNALING_URL}`);
+  console.log(`ID: ${ID}`);
+  console.log(`TARGET: ${TARGET}`);
+  console.log("---");
+  console.log("現在の状態: 待機中");
+});
 
 
