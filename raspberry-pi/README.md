@@ -14,7 +14,6 @@ cd DennDennMushi
 yarn install
 ```
 
-
 音声出力には `aplay` コマンドを利用します。`alsa-utils` パッケージが
 インストールされていない場合は以下を実行してください。
 
@@ -31,6 +30,7 @@ sudo apt-get install libsox-fmt-all
 ```bash
 docker compose up -d api
 ```
+
 直接起動する場合は以下を実行してください。
 
 ```bash
@@ -66,6 +66,15 @@ ID=ras-2 TARGET=ras-1 yarn dev
 
 シグナリングサーバーの URL を変更したい場合は `SIGNALING_URL`
 環境変数で指定してください。デフォルトは `http://localhost:5000` です。
+
+# 5. プログラムを実行例
+
+```bash
+sudo pigpiod
+sudo SIGNALING_URL=http://192.168.2.100:5000 ID=ras-1 TARGET=ras-2 yarn dev
+#または
+sudo SIGNALING_URL=http://192.168.2.100:5000 ID=ras-2 TARGET=ras-1 yarn dev
+```
 
 ## 動作概要
 
