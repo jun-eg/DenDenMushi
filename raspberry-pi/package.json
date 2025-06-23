@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "node-record-lpcm16": "^1.0.1",
+    "node-web-gpio": "^1.1.19",
+    "node-web-i2c": "^1.1.36",
     "simple-peer": "^9.11.1",
     "socket.io-client": "^4.8.1",
     "uuid": "^11.1.0",
