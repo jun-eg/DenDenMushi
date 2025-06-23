@@ -177,5 +177,3 @@ initGPIO().then(() => {
   console.log("---");
   console.log("現在の状態: 待機中");
 });
-
-
