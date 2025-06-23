@@ -20,6 +20,8 @@ yarn install
 ```bash
 sudo apt-get update
 sudo apt-get install -y alsa-utils
+sudo apt-get install sox
+sudo apt-get install libsox-fmt-all
 ```
 
 シグナリングサーバー (backend) を起動しておきます。Docker を利用する場合は
