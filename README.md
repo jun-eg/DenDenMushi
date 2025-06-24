@@ -3,7 +3,7 @@
 ## プロジェクト概要
 
 NestJS で動作するシグナリングサーバー (`backend`) を利用し、
-`ras-1` と `ras-2` の 2 台の Raspberry Pi 間で WebRTC 通話を行う。
+`ras-1` と `ras-2` の 2 台の Raspberry Pi 間で WebRTC 通話を行う
 
 ## セットアップ
 
@@ -53,6 +53,7 @@ docker compose up
 - `SIGNALING_URL` ： シグナリングサーバーの URL (オプション)
 
 ```bash
+sudo pigpiod
 # ras-1 側で実行例（ras-2 に接続）
 ID=ras-1 TARGET=ras-2 yarn dev
 
