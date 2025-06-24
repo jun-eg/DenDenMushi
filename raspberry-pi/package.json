@@ -6,10 +6,12 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts"
+    "dev": "node --import 'data:text/javascript,import { register } from \"node:module\"; import { pathToFileURL } from \"node:url\"; register(\"ts-node/esm\", pathToFileURL(\"./\"));' src/index.ts"
   },
   "dependencies": {
     "node-record-lpcm16": "^1.0.1",
+    "pigpio": "^3.3.1",
+    "pigpio-client": "^1.5.2",
     "simple-peer": "^9.11.1",
     "socket.io-client": "^4.8.1",
     "uuid": "^11.1.0",
@@ -17,8 +19,9 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.3",
+    "@types/pigpio": "^3.1.0",
     "@types/simple-peer": "^9.11.8",
-    "ts-node": "^10.9.2",
+    "ts-node": "11.0.0-beta.1",
     "typescript": "^5.2.2"
   }
 }
